@@ -1,0 +1,22 @@
+{
+     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentParameters.json",
+     "contentVersion": "1.0.0.0",
+
+     "paths": [
+          "servicePackageLink"
+     ],
+     "parameters": {
+          "siteName": {
+               "value": "MSB2017-ContactsApp-Engineering"
+          },
+          "servicePackageLink": {
+               "value": "build\\contacts-app.zip"
+          },
+          "hostingPlanName": {
+               "value": "Free"
+          },
+          "siteLocation": {
+               "value": "East US"
+          }
+     }
+}

@@ -1,0 +1,64 @@
+{
+     "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/RolloutSpec.json",
+     "ContentVersion": "1.0.0.0",
+
+     "RolloutMetadata": {
+          "ServiceModelPath": "servicemodel.json",
+          "Name": "MSB2017-ContactsApp 1.0.0.0",
+          "RolloutType": "Major",
+          "BuildSource": {
+               "Parameters": {
+                    "VersionFile": "buildver.txt"
+               }
+          },
+          "Notification": {
+               "Email": {
+                    "To": "garezni@microsoft.com"
+               }
+          }
+     },
+
+     "OrchestratedSteps": [
+          {
+               "Name": "Rollout_WestUS-HR",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-HR",
+               "Actions": [ "Deploy" ]
+          },
+          {
+               "Name": "Check_WestUS-HR",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-HR",
+               "Actions": [ "Extension/ContactsApp-health-check" ],
+               "DependsOn": [ "Rollout_WestUS-HR" ]
+          },
+          {
+               "Name": "Rollout_WestUS-Legal",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-Legal",
+               "Actions": [ "Deploy" ],
+               "DependsOn": [ "Check_WestUS-HR" ]
+          },
+          {
+               "Name": "Check_WestUS-Legal",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-Legal",
+               "Actions": [ "Extension/ContactsApp-health-check" ],
+               "DependsOn": [ "Rollout_WestUS-Legal" ]
+          },
+          {
+               "Name": "Rollout_EastUS-Engineering",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-Engineering",
+               "Actions": [ "Deploy" ],
+               "DependsOn": [ "Check_WestUS-Legal" ]
+          },
+          {
+               "Name": "Check_EastUS-Engineering",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-Engineering",
+               "Actions": [ "Extension/ContactsApp-health-check" ],
+               "DependsOn": [ "Rollout_EastUS-Engineering" ]
+          }
+     ]
+}

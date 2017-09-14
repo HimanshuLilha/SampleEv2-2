@@ -1,0 +1,24 @@
+{
+     "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/RolloutParameters.json",
+     "contentVersion": "1.0.0.0",
+
+     "Extensions": [
+          {
+               "Name": "ContactsApp-health-check",
+               "Type": "Microsoft.ADMDemo/ContactsHealthCheck",
+               "Version": "1.0.0.0",
+               "ConnectionProperties": {
+                    "MaxExecutionTime": "PT1H",
+                    "Authentication": {
+                         "Type": "CertificateAuthentication",
+                         "Reference": {
+                              "Provider": "AzureKeyVault",
+                              "Parameters": {
+                                   "SecretId": "https://admdemovault1.vault.azure.net:443/secrets/admdemocert1/ab6019fe20f94e5eafe412f8c071d1ef"
+                              }
+                         }
+                    }
+               }
+          }
+     ]
+}

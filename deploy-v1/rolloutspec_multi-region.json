@@ -1,0 +1,43 @@
+{
+     "$schema": "http://schema.express.azure.com/schemas/2015-01-01-alpha/RolloutSpec.json",
+     "ContentVersion": "1.0.0.0",
+
+     "RolloutMetadata": {
+          "ServiceModelPath": "servicemodel.json",
+          "Name": "MSB2017-ContactsApp 1.0.0.0",
+          "RolloutType": "Major",
+          "BuildSource": {
+               "Parameters": {
+                    "VersionFile": "buildver.txt"
+               }
+          },
+          "Notification": {
+               "Email": {
+                    "To": "garezni@microsoft.com"
+               }
+          }
+     },
+
+     "OrchestratedSteps": [
+          {
+               "Name": "Rollout_WestUS-HR",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-HR",
+               "Actions": [ "Deploy" ]
+          },
+          {
+               "Name": "Rollout_WestUS-Legal",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-Legal",
+               "Actions": [ "Deploy" ],
+               "DependsOn": [ "Rollout_WestUS-HR" ]
+          },
+          {
+               "Name": "Rollout_EastUS-Engineering",
+               "TargetType": "ServiceResourceGroup",
+               "TargetName": "ContactsApp-Engineering",
+               "Actions": [ "Deploy" ],
+               "DependsOn": [ "Rollout_WestUS-Legal" ]
+          },
+     ]
+}
