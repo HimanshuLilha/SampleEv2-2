@@ -24,7 +24,7 @@
                "AzureResourceGroupName": "ContactsApp-HR",
                "Location": "West US",
                "InstanceOf": "ContactsApp",
-               "AzureSubscriptionId": "c42e6286-971c-46ff-9ec6-6f24fc4e0e1a",
+               "AzureSubscriptionId": "c00d16c7-6c1f-4c03-9be1-6934a4c49682",
 
                "ServiceResources": [
                     {
@@ -40,7 +40,7 @@
                "AzureResourceGroupName": "ContactsApp-Legal",
                "Location": "West US",
                "InstanceOf": "ContactsApp",
-               "AzureSubscriptionId": "c42e6286-971c-46ff-9ec6-6f24fc4e0e1a",
+               "AzureSubscriptionId": "c00d16c7-6c1f-4c03-9be1-6934a4c49682",
 
                "ServiceResources": [
                     {
