@@ -7,7 +7,7 @@
      ],
      "parameters": {
           "siteName": {
-               "value": "MSB2017-ContactsApp-Legal"
+               "value": "MSB2017-ContactsApp-Legal-1"
           },
           "servicePackageLink": {
                "value": "build\\contacts-app.zip"
